@@ -5,6 +5,14 @@ def get_numbers_ticket(min_num, max_num, quantity):
         return []
     if quantity > (max_num - min_num + 1):
         return []
+    if min_num < 1:
+        return []
+    if max_num > 99:
+        return []
+    if min_num > max_num:
+        return []
+    if quantity < 1 or quantity > (max_num - min_num + 1):
+        return []
     return sorted(random.sample(range(min_num, max_num + 1), quantity))
 
 lottery_numbers = get_numbers_ticket(1, 99, 6)
