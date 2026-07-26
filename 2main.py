@@ -7,7 +7,7 @@ def get_numbers_ticket(min_num, max_num, quantity):
         return []
     if min_num < 1:
         return []
-    if max_num > 99:
+    if max_num > 1000:
         return []
     if min_num > max_num:
         return []
