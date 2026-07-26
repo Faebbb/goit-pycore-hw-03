@@ -1,14 +1,19 @@
+import re
+
 def normalize_phone(phone_number):
-    digits = ''.join(filter(str.isdigit, phone_number))
+    cleaned = re.sub(r'[^\d+]', '', phone_number)
     
-    if digits.startswith('0'):
-        digits = '38' + digits
-    elif digits.startswith('380'):
-        pass
+    if cleaned.startswith('+'):
+        cleaned = '+' + re.sub(r'\D', '', cleaned)
     else:
-        return NotImplementedError
+        digits = re.sub(r'\D', '', cleaned)
+        
+        if digits.startswith('380'):
+            cleaned = '+' + digits
+        else:
+            cleaned = '+38' + digits
     
-    return '+{}'.format(digits)
+    return cleaned
 
 raw_numbers = [
     "067\\t123 4567",
